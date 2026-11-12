@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NeuroAdaptive AI — ADHD Interaction Prototype v0.1</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-wrap">
+      <div class="brand-mark">N</div>
+      <div>
+        <div class="brand">NeuroAdaptive AI</div>
+        <div class="subtitle">ADHD-related Mouse Interaction Prototype v0.1</div>
+      </div>
+    </div>
+    <div class="status-pill" id="globalStatus">Prototype</div>
+  </header>
+
+  <main class="shell">
+    <section id="screenIntro" class="screen active">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">BEHAVIORAL PROTOTYPE</div>
+          <h1>用一個短版 Go / No-Go 任務，記錄滑鼠動態與注意力相關互動訊號。</h1>
+          <p class="lead">
+            本版本會記錄反應時間、誤按、漏按、滑鼠速度、加速度、移動距離與方向修正，
+            產生一個研究展示用的「ADHD-related interaction indicator」。
+          </p>
+          <div class="notice">
+            <strong>重要：</strong>這不是醫療診斷工具，也不會判定使用者是否罹患 ADHD。
+            分數僅用於展示「行為訊號 → 互動需求 → 介面調整」的技術流程。
+          </div>
+          <div class="cta-row">
+            <button class="btn primary" id="btnStart">開始測試</button>
+            <button class="btn ghost" id="btnMethod">查看目前分析項目</button>
+          </div>
+        </div>
+        <aside class="flow-card">
+          <div class="mini-title">Prototype Pipeline</div>
+          <div class="flow-step"><span>01</span><b>Go / No-Go Task</b><small>固定起始區 → 刺激 → 反應</small></div>
+          <div class="flow-step"><span>02</span><b>Mouse Telemetry</b><small>x / y / time / click / trajectory</small></div>
+          <div class="flow-step"><span>03</span><b>Feature Extraction</b><small>RT、errors、speed、acceleration、direction</small></div>
+          <div class="flow-step"><span>04</span><b>Rule-based Baseline</b><small>輸出互動需求，不輸出診斷</small></div>
+          <div class="flow-step"><span>05</span><b>Adaptive UI Preview</b><small>Focus mode / structured interface</small></div>
+        </aside>
+      </div>
+
+      <div id="methodPanel" class="method-panel hidden">
+        <div class="metric-chip">Reaction Time</div>
+        <div class="metric-chip">RT Variability</div>
+        <div class="metric-chip">Commission Error</div>
+        <div class="metric-chip">Omission Error</div>
+        <div class="metric-chip">Mean / Max Speed</div>
+        <div class="metric-chip">Acceleration</div>
+        <div class="metric-chip">Path Length</div>
+        <div class="metric-chip">Direction Changes</div>
+      </div>
+    </section>
+
+    <section id="screenInstructions" class="screen">
+      <div class="panel narrow">
+        <div class="eyebrow">TASK INSTRUCTIONS</div>
+        <h2>任務規則</h2>
+        <div class="rule-grid">
+          <div class="rule-card go-card">
+            <div class="cue cue-go">V</div>
+            <h3>Go</h3>
+            <p>看到 <b>V</b> 後，請盡快移動滑鼠並點擊出現的目標按鈕。</p>
+          </div>
+          <div class="rule-card nogo-card">
+            <div class="cue cue-nogo">2</div>
+            <h3>No-Go</h3>
+            <p>看到 <b>2</b> 後，請不要點擊目標，等待下一題。</p>
+          </div>
+        </div>
+        <div class="instruction-box">
+          每一題都先把滑鼠移到下方的 <b>START</b> 區。系統會從這個固定起點開始記錄軌跡。
+          本 Demo 共 <b>20 題</b>，大約 45–60 秒。
+        </div>
+        <button class="btn primary wide" id="btnBeginTask">開始 20 題測試</button>
+      </div>
+    </section>
+
+    <section id="screenTask" class="screen task-screen">
+      <div class="task-header">
+        <div>
+          <div class="eyebrow">LIVE TASK</div>
+          <h2>Mouse Go / No-Go</h2>
+        </div>
+        <div class="progress-block">
+          <div class="progress-meta"><span id="trialLabel">Trial 1 / 20</span><span id="accuracyLive">—</span></div>
+          <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+        </div>
+      </div>
+
+      <div id="taskArena" class="task-arena" aria-label="Go No-Go task area">
+        <div class="arena-hint" id="arenaHint">把滑鼠移到 START 區開始</div>
+        <div id="cueDisplay" class="cue-display hidden"></div>
+        <button id="targetButton" class="target-button hidden" type="button">CLICK</button>
+        <div id="startZone" class="start-zone">START</div>
+      </div>
+      <div class="task-footer">
+        <span class="live-dot"></span><span id="trackingStatus">等待開始記錄</span>
+        <span class="separator">•</span>
+        <span id="pointCount">0 points</span>
+      </div>
+    </section>
+
+    <section id="screenResults" class="screen">
+      <div class="results-head">
+        <div>
+          <div class="eyebrow">SESSION RESULT</div>
+          <h2>Behavior Analysis Dashboard</h2>
+          <p>以下數值全部由你剛剛完成的這次任務即時計算。</p>
+        </div>
+        <div id="indicatorBadge" class="indicator-badge">—</div>
+      </div>
+
+      <div class="metric-grid" id="metricGrid"></div>
+
+      <div class="chart-grid">
+        <div class="chart-card">
+          <div class="chart-title">Reaction Time by Go Trial</div>
+          <canvas id="rtChart" width="680" height="280"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Mouse Speed over Time</div>
+          <canvas id="speedChart" width="680" height="280"></canvas>
+        </div>
+        <div class="chart-card wide-chart">
+          <div class="chart-title">Mouse Trajectory — Selected Trial</div>
+          <canvas id="trajectoryChart" width="1380" height="360"></canvas>
+        </div>
+      </div>
+
+      <div class="analysis-grid">
+        <div class="analysis-card">
+          <div class="section-kicker">INTERACTION SUMMARY</div>
+          <h3>ADHD-related interaction indicator</h3>
+          <div class="score-row">
+            <div class="score-ring" id="scoreRing"><span id="scoreValue">—</span></div>
+            <div>
+              <div class="score-label" id="scoreLabel">—</div>
+              <p id="scoreExplanation">—</p>
+            </div>
+          </div>
+          <div id="signalList" class="signal-list"></div>
+          <div class="diagnostic-warning">此指標為 Prototype 的規則式 baseline，門檻未經臨床驗證，不可作為 ADHD 診斷或篩檢。</div>
+        </div>
+
+        <div class="analysis-card">
+          <div class="section-kicker">ADAPTATION</div>
+          <h3>Recommended interface support</h3>
+          <div id="recommendationList" class="recommendation-list"></div>
+          <button class="btn primary wide" id="btnPreview">預覽 Focus Mode</button>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button class="btn primary" id="btnDownloadCsv">下載 Session CSV</button>
+        <button class="btn ghost" id="btnDownloadJson">下載完整 JSON</button>
+        <button class="btn ghost" id="btnRestart">重新測試</button>
+      </div>
+
+      <div id="adaptivePreview" class="adaptive-preview hidden">
+        <div class="preview-head">
+          <div>
+            <div class="section-kicker">CHROME EXTENSION CONCEPT</div>
+            <h3>購物頁：一般模式 vs Focus Mode</h3>
+          </div>
+          <button class="btn small" id="btnToggleFocus">切換 Focus Mode</button>
+        </div>
+        <div class="mock-browser" id="mockBrowser">
+          <div class="mock-toolbar"><span></span><span></span><span></span><div>shop.example/product/123</div></div>
+          <div class="mock-page">
+            <aside class="mock-sidebar">
+              <div class="ad-box">FLASH SALE</div>
+              <div class="ad-box">猜你喜歡</div>
+              <div class="ad-box animated">限時優惠</div>
+            </aside>
+            <article class="mock-product">
+              <div class="product-title">Wireless Noise-Cancelling Headphones</div>
+              <div class="product-meta">★ 4.8　1,248 reviews　熱銷商品</div>
+              <div class="product-copy">高解析音訊、主動降噪、40 小時續航、快速充電與多裝置切換。頁面原本包含大量推薦、促銷動畫與次要資訊。</div>
+              <div class="feature-list">
+                <div><b>Battery</b><span>40 hours</span></div>
+                <div><b>ANC</b><span>Adaptive</span></div>
+                <div><b>Weight</b><span>254 g</span></div>
+              </div>
+              <button class="buy-button">加入購物車</button>
+            </article>
+            <aside class="mock-right">
+              <div class="promo-card">加購 8 折</div>
+              <div class="promo-card">會員限定</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    NeuroAdaptive AI Prototype v0.1 · Research demo only · No clinical diagnosis
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
