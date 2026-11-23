@@ -102,4 +102,4 @@ async def main():
         await ctx.close()
     vids = glob.glob('video/raw/*.webm'); print(vids)
     json.dump(ev, open('video/events.json', 'w'), ensure_ascii=False, indent=1)
-asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())

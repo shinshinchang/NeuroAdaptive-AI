@@ -3,7 +3,13 @@
 > 不需要額外硬體，只用瀏覽器裡的滑鼠微行為，即時估算「注意力負荷」，偏高時溫和提醒，並一鍵把網頁變成專注模式。
 > **定位：自我覺察的輔助工具，不做醫療診斷。** 所有資料只在本機分頁記憶體內計算，不上傳、不儲存原始軌跡。
 
-展示影片：[`NeuroAdaptive_demo.mp4`](NeuroAdaptive_demo.mp4)（約 87 秒，1280×720，剪紙動畫＋實機錄影）
+展示影片：
+- **v2（主要版本）**：[`NeuroAdaptive_demo_v2.mp4`](NeuroAdaptive_demo_v2.mp4)（約 2:10，1920×1080，英語旁白＋燒錄繁中／英文雙行字幕＋配樂；另附 [`zh-Hant.srt`](NeuroAdaptive_demo_v2.zh-Hant.srt)、[`en.srt`](NeuroAdaptive_demo_v2.en.srt)）
+  - 敘事：為什麼（網頁太吵是設計問題）→ v0.1 起點（Go/No-Go → 10 個特徵 → 分數＋儀表板，含 v0.1 實機畫面）→ 橋接「v0.1 could measure attention. But measuring isn't helping.」→ 在任何網頁感知（動作特徵＋來回捲動、個人基準線；程式模擬輸入的躁動 vs 平穩並排測試）→ 使用者同意後才調整（提示、按下開啟、3 秒停頓、四步轉換、閱讀尺／段落聚焦）→ 控制權與隱私（一鍵還原、資料留本機）→ 下一步與聲明。
+  - 「躁動 vs 平穩」是**程式產生的滑鼠動作**（`video/v2/scripted_test.py`，原始數據 `video/v2/scripted_test.json`：躁動 36→82→…→100，平穩 11→14→…→9），只證明分數會隨動作變化，**不是受試者數據**。
+  - 旁白：AI 合成語音（Microsoft Edge TTS，en-US-AndrewNeural）。配樂：本團隊以 `video/v2/music.py` 程式自行合成的原創音樂（無第三方授權問題）；按下「開啟」時靜默 1 秒，從緊張的 A 段轉為平靜的 B 段，旁白下方約 −13 dB ducking。
+  - 重製：`video/v2/`（`tts.py` → `audio_subs.py` → `paper/render2.py` → `build_v2.sh`）。
+- v1：[`NeuroAdaptive_demo.mp4`](NeuroAdaptive_demo.mp4)（87 秒，1280×720，無旁白，剪紙動畫＋實機錄影）
 
 ## 資料夾內容
 | 路徑 | 說明 |

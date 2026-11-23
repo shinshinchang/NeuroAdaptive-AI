@@ -79,8 +79,8 @@ SC.concept=t=>{let h=bg();
   // 儀表：30→78→32（示意）
   const val=t<1.5?30:t<5.5?30+48*ease(span(t,1.5,5.2)):t<7?78:78-46*ease(span(t,7,9));
   h+=gauge(930,60,val,'注意力負荷',70,'示意');
-  if(t>1.3&&t<6.6) h+=caption('滑鼠的速度、方向、來回捲動 → 注意力負荷',1.3,t);
-  if(t>=6.6) h+=caption('負荷偏高時，把干擾一張一張撕下來',6.6,t);
+  if(!window.NOCAP&&t>1.3&&t<6.6) h+=caption('滑鼠的速度、方向、來回捲動 → 注意力負荷',1.3,t);
+  if(!window.NOCAP&&t>=6.6) h+=caption('負荷偏高時，把干擾一張一張撕下來',6.6,t);
   return h};
 // S3 功能快閃 7s
 SC.features=t=>{let h=bg('#f1e6cf');
@@ -105,5 +105,58 @@ SC.splitbg=t=>{let h=bg('#2b2622');
   h+=sheet(22,92,624,370,P.red,110)+sheet(634,92,624,370,P.green,111);
   return h};
 SC.cap=t=>caption(window.CAP,0,9);
+
+// ===== v2 scenes =====
+const node=(x,y,w,h,col,id,on,title,sub)=>sheet(x,y,w,h,on?col:'#4a423b',id,`opacity:${on?1:.55}`,`<div style="padding:14px 18px;color:#fbf6ea"><div style="font-size:21px;font-weight:900;white-space:nowrap">${title}</div><div style="font-size:13px;margin-top:6px;opacity:.9">${sub}</div></div>`);
+SC.flow=t=>{let h=bg('#2b2622');
+  h+=`<div style="position:absolute;left:36px;top:24px;color:#f4cf5d;font-size:20px;font-weight:900;letter-spacing:.1em">STEP 1 ・ v0.1 起點</div>`;
+  const N=[['Go/No-Go 小遊戲','Browser game · 20 trials',P.blue],['10 個滑鼠特徵','RT variability · direction · efficiency',P.teal],['負荷分數＋儀表板','Attention-load score + dashboard',P.orange]];
+  N.forEach(([a,b,c],i)=>{const on=t>1+i*3.2; const k=back(span(t,1+i*3.2,1.4+i*3.2)); h+=`<div style="position:absolute;left:0;top:0;transform:scale(${on?.96+.04*k:.96});transform-origin:150px ${130+i*150}px">`+node(28,80+i*150,280,110,c,300+i,on,a,b)+'</div>';
+    if(i<2) h+=`<svg style="position:absolute;left:150px;top:${195+i*150}px" width="40" height="40"><path d="M20,2 L20,30 M10,22 L20,34 L30,22" stroke="${on?'#fbf6ea':'#6b625a'}" stroke-width="5" fill="none" stroke-linecap="round"/></svg>`});
+  h+=sheet(330,60,930,540,'#3a332d',310); // frame for real footage
+  return h};
+SC.bridge=t=>{let h=bg('#2b2622'); const k=back(span(t,.2,.6)), k2=back(span(t,1.6,2.0));
+  h+=sheet(170,170,420,170,P.blue,320,`transform:scale(${k}) ${jit(320)}`,`<div style="text-align:center;color:#fbf6ea;padding-top:30px"><div style="font-size:52px;font-weight:900">量測</div><div style="font-size:24px">Measure</div></div>`,-2);
+  if(t>1.0){const a=span(t,1.0,1.6); h+=`<svg style="position:absolute;left:600px;top:225px" width="90" height="60"><path d="M5,30 L${5+75*a},30 M${60*a},12 L${80*a},30 L${60*a},48" stroke="#f4cf5d" stroke-width="8" fill="none" stroke-linecap="round"/></svg>`}
+  if(t>1.6) h+=sheet(700,170,420,170,P.green,321,`transform:scale(${k2}) ${jit(321)}`,`<div style="text-align:center;color:#fbf6ea;padding-top:30px"><div style="font-size:52px;font-weight:900">介入</div><div style="font-size:24px">Help, in the moment</div></div>`,2);
+  return h};
+SC.feat5=t=>{let h=bg('#f1e6cf');
+  h+=`<div style="position:absolute;left:40px;top:28px;font-size:30px;font-weight:900;color:${P.ink}">保留動作特徵＋加入瀏覽訊號 <span style="font-size:20px;color:#6a5d50">Movement features + browsing signals</span></div>`;
+  const F=[['移動節奏不穩','speed CV',.30,P.red],['突發甩動','sudden flicks',.28,P.orange],['來回捲動 ≥120px','back-and-forth scroll',.20,P.pink],['方向急轉','direction changes',.12,P.blue],['速度變異','speed SD',.10,P.teal]];
+  F.forEach(([a,b,w,c],i)=>{const t0=.3+i*.5; if(t<t0) return; const k=back(span(t,t0,t0+.4));
+    h+=sheet(40,100+i*84-(1-k)*30,760,70,P.cream,330+i,`opacity:${clamp(k)}`,`<div style="display:flex;align-items:center;height:70px;padding:0 20px;gap:16px"><div style="width:${w*900}px;height:26px;background:${c};border-radius:4px"></div><div style="font-size:24px;font-weight:900;color:${P.ink}">${a}</div><div style="font-size:16px;color:#6a5d50">${b}</div><div style="margin-left:auto;font-size:22px;font-weight:900;color:${P.ink}">×${w.toFixed(2)}</div></div>`)});
+  if(t>3.2){const k=back(span(t,3.2,3.6)); h+=sheet(850,120,390,300,P.green,340,`transform:scale(${k}) ${jit(340)}`,`<div style="color:#fbf6ea;text-align:center;padding:34px 20px"><div style="font-size:58px">🧭</div><div style="font-size:30px;font-weight:900;margin-top:10px">個人基準線</div><div style="font-size:19px;margin-top:10px;line-height:1.5">前 25 秒先校準<br>只跟你自己比，不跟別人比<br><span style="opacity:.8">Your own baseline only</span></div></div>`,2)}
+  h+=`<div style="position:absolute;left:40px;top:530px;font-size:17px;color:#6a5d50">權重沿用 v0.1 指標（人工設定、尚未用資料校正）・Weights carried over from v0.1 (hand-set, not yet data-calibrated)</div>`;
+  return h};
+SC.scripted=t=>{let h=bg('#f1e6cf'); const D=window.SD, dur=window.SDUR||14;
+  h+=sheet(250,14,780,58,P.ink,350,'',`<div style="color:#fbf6ea;text-align:center;line-height:58px;font-size:24px;font-weight:900">程式模擬軌跡，非受試者數據 ・ Scripted input, not human data</div>`);
+  [['restless','躁動輸入 Restless',P.red,40],['steady','平穩輸入 Steady',P.green,660]].forEach(([k,title,c,x],j)=>{
+    const d=D[k], fr=clamp(t/(dur*.85)), n=Math.floor(fr*d.points.length), sc=.42;
+    let path=''; d.points.slice(0,n).forEach(([px,py],i)=>path+=(i?'L':'M')+(px*sc+10).toFixed(1)+','+(py*sc+10).toFixed(1));
+    const si=Math.min(9,Math.floor(fr*10)), val=d.series[si];
+    h+=sheet(x,92,580,430,P.cream,360+j,'',`<div style="position:absolute;left:18px;top:12px;font-size:24px;font-weight:900;color:${P.ink}">${title}</div>
+     <svg style="position:absolute;left:10px;top:52px" width="560" height="320"><rect x="10" y="10" width="538" height="302" fill="#efe6d2" rx="6"/><path d="${path}" stroke="${c}" stroke-width="2.5" fill="none" stroke-linejoin="round" opacity=".85"/></svg>
+     <div style="position:absolute;left:20px;right:20px;top:382px;height:30px;background:#e2d6bf;border-radius:4px"><div style="width:${val}%;height:100%;background:${c};border-radius:4px"></div></div>
+     <div style="position:absolute;right:24px;top:338px;font-size:34px;font-weight:900;color:${c}">${val}</div>
+     <div style="position:absolute;left:20px;top:348px;font-size:15px;color:#6a5d50">第 ${si+1} 秒 / 10 秒</div>`)});
+  h+=`<div style="position:absolute;left:40px;top:540px;font-size:17px;color:#6a5d50">分數量尺 0–100，越高＝動作越躁動・同一頁面、同一設定，擴充功能即時計算・Score 0–100, higher = more restless movement</div>`;
+  return h};
+SC.control=t=>{let h=bg('#f1e6cf');
+  const I=[['📷','不需要鏡頭','No camera'],['🖱','不需額外硬體','No extra hardware'],['↩','一鍵還原','One-click restore'],['🔒','資料留在本機','Data stays local']];
+  I.forEach(([ic,a,b],i)=>{const t0=.2+i*.6; if(t<t0) return; const k=back(span(t,t0,t0+.4));
+    h+=sheet(60+i*295,150-(1-k)*300,270,300,[P.blue,P.teal,P.green,P.ink][i],370+i,'',`<div style="text-align:center;color:#fbf6ea;padding-top:44px"><div style="font-size:66px">${ic}</div><div style="font-size:32px;font-weight:900;margin-top:16px">${a}</div><div style="font-size:18px;margin-top:8px;opacity:.85">${b}</div></div>`,(i%2?2:-2))});
+  return h};
+SC.next=t=>{let h=bg();
+  h+=`<div style="position:absolute;left:60px;top:40px;font-size:36px;font-weight:900;color:${P.ink}">下一步 Next</div>`;
+  [['👥','請同學小規模試用','Classmate trial (planned)'],['⚖','用回饋與資料校正權重','Tune the weights with real feedback']].forEach(([ic,a,b],i)=>{const t0=.3+i*.8; if(t<t0) return; const k=back(span(t,t0,t0+.4));
+    h+=sheet(80+i*570,130-(1-k)*200,520,240,[P.blue,P.orange][i],380+i,'',`<div style="color:#fbf6ea;padding:34px 30px"><div style="font-size:56px">${ic}</div><div style="font-size:32px;font-weight:900;margin-top:12px">${a}</div><div style="font-size:19px;margin-top:8px;opacity:.9">${b}</div></div>`,(i?2:-2))});
+  return h};
+SC.disc2=t=>{let h=bg('#2b2622'); const k=back(span(t,.1,.5));
+  h+=sheet(160,150-(1-k)*300,960,250,'#ffffff',390,'',`<div class="serif" style="text-align:center;color:${P.ink};font-size:46px;font-weight:900;padding-top:52px">自我覺察的輔助工具，不做醫療診斷。</div><div style="text-align:center;color:#6a5d50;font-size:22px;margin-top:20px">Not a medical or diagnostic tool ・ 指標為原型規則，尚未經資料驗證</div>`);
+  return h};
+SC.end2=t=>{let h=SC.end(Math.min(t,2.5)).replace(/NeuroAdaptive AI 專題團隊 ・ Chrome 擴充功能 Demo v0.2/,'歡迎來攤位試玩 ・ Come try it at our booth');
+  if(t>2.6) h+=`<div style="position:absolute;top:470px;width:100%;text-align:center;color:#4a423b;font-size:19px;line-height:1.7">旁白：AI 合成語音 ・ Narration: AI-generated voice (Microsoft Edge TTS, en-US-AndrewNeural)<br>配樂：本團隊以程式自行合成的原創配樂 ・ Music: original, procedurally generated</div>`;
+  return h};
+
 window.renderFrame=(scene,t)=>{F=Math.floor(t*FPS); document.getElementById('stage').innerHTML=SC[scene](Math.floor(t*FPS)/FPS)};
 </script></body></html>
