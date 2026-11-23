@@ -1,0 +1,57 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><title>每日快訊 Daily Buzz｜示範新聞頁</title>
+<style>
+body{margin:0;font-family:"Noto Sans CJK TC","PingFang TC","Microsoft JhengHei",sans-serif;background:#fff;color:#222}
+.topbar{background:#c4161c;color:#fff;display:flex;align-items:center;gap:20px;padding:8px 20px;position:sticky;top:0;z-index:50}
+.topbar b{font-size:24px}.topbar nav a{color:#fff;margin-right:14px;text-decoration:none;font-size:14px}
+.ticker{background:#111;color:#ffd400;white-space:nowrap;overflow:hidden;font-size:14px;padding:5px 0}
+.ticker span{display:inline-block;padding-left:100%;animation:tick 14s linear infinite}@keyframes tick{to{transform:translateX(-100%)}}
+.ad-top{margin:10px auto;width:960px;height:90px;background:linear-gradient(90deg,#ff3d7f,#ffb300,#00c2ff,#ff3d7f);background-size:300% 100%;animation:grad 3s linear infinite;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;border-radius:6px}
+@keyframes grad{to{background-position:300% 0}}
+.wrap{display:flex;gap:20px;width:1200px;margin:0 auto;padding:0 10px}
+.left-sidebar{width:200px;font-size:13px}.left-sidebar li{margin:8px 0;color:#c4161c}
+.content{flex:1;min-width:0}.content h1{font-size:28px;margin:8px 0}.meta{color:#999;font-size:12px}
+.content p{font-size:15px;line-height:1.6}
+.ad-inline{background:#fff3c4;border:3px dashed #f60;padding:14px;margin:14px 0;font-weight:700;animation:shake .6s infinite}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.sidebar{width:300px}.ad-box{height:250px;background:#222;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:14px;border-radius:6px;font-size:22px;font-weight:800;animation:flash 1s steps(2) infinite}
+@keyframes flash{50%{background:#e91e63}}
+.spin{width:60px;height:60px;border:8px solid #fff;border-top-color:#ffd400;border-radius:50%;animation:sp 1s linear infinite;margin-bottom:10px}@keyframes sp{to{transform:rotate(360deg)}}
+.related-list div{padding:8px;border-bottom:1px solid #eee;font-size:13px}.related-list .hot{color:#c4161c;font-weight:700}
+.fake-video{background:#000;color:#fff;height:170px;display:flex;align-items:center;justify-content:center;border-radius:6px;position:relative;overflow:hidden}
+.fake-video::after{content:"";position:absolute;left:0;bottom:0;height:4px;background:red;animation:vp 6s linear infinite}@keyframes vp{from{width:0}to{width:100%}}
+.comment-section{margin-top:20px;background:#fafafa;padding:10px;font-size:13px}
+.popup-chat{position:fixed;right:20px;bottom:20px;width:230px;background:#25d366;color:#fff;padding:12px;border-radius:12px;font-size:13px;animation:bounce 1.4s infinite;z-index:60}
+@keyframes bounce{50%{transform:translateY(-10px)}}
+.promo-strip{position:fixed;left:0;bottom:0;width:60%;background:#ffd400;color:#000;padding:10px 20px;font-weight:800;z-index:59}
+.badge-new{display:inline-block;background:#f00;color:#fff;font-size:11px;padding:1px 5px;border-radius:3px;animation:flash 0.8s steps(2) infinite}
+</style></head><body>
+<div class="topbar"><b>每日快訊 Daily Buzz</b><nav><a>首頁</a><a>即時</a><a>政治</a><a>財經</a><a>科技</a><a>娛樂</a><a>運動</a><a>生活</a><a>影音</a><a>直播</a></nav></div>
+<div class="ticker"><span>⚡ 快訊：颱風動態更新 ｜ 股市盤中震盪 ｜ 週末連假交通管制 ｜ 限時優惠倒數 03:12:45 ｜ 熱搜：新手機開箱 ｜ 本日最多人看：十大夜市排行</span></div>
+<div class="ad-top">🔥 雙 11 延長賽！全館 1 折起 點我搶 🔥</div>
+<div class="wrap">
+ <aside class="left-sidebar"><b>熱門分類</b><ul><li>即時新聞 <span class="badge-new">NEW</span></li><li>網友熱議</li><li>今日運勢</li><li>開箱評測 <span class="badge-new">HOT</span></li><li>美食地圖</li><li>星座</li><li>抽獎活動</li></ul></aside>
+ <article class="content">
+  <h1>大學生如何在資訊爆炸的時代找回專注力？</h1>
+  <div class="meta">記者 示範 ／ 2026-11-23　｜　分享 👍 2.3萬　💬 518</div>
+  <p>現代人每天面對大量的通知、廣告與推薦內容。研究顯示，當一個網頁同時有多個會動的元素時，讀者需要花更多力氣才能把注意力留在正文上，閱讀速度與理解程度也會跟著下降。</p>
+  <p>許多大學生表示，打開一篇文章後，常常讀不到兩段就被旁邊的廣告或「你可能也喜歡」吸走，等回過神來，已經開了十幾個分頁。這不一定是個人意志力的問題，而是介面設計本身就在爭奪注意力。</p>
+  <div class="ad-inline">📢 贊助內容：三分鐘學會投資理財！立即加入 LINE 好友領取免費講義 👉👉👉</div>
+  <p>心理學中常用「認知負荷」來描述大腦在處理資訊時承受的壓力。當外在的干擾越多，留給理解內容本身的資源就越少。對於本來就比較容易被外在刺激吸引的人來說，這種影響會更明顯。</p>
+  <p>有些研究嘗試用眼動儀或腦波儀來測量注意力，但這些設備昂貴，也不適合在日常生活中使用。相對地，滑鼠移動是每個人上網時都會產生的行為資料：移動速度忽快忽慢、方向頻繁改變、來回捲動頁面，都可能是注意力被拉扯的線索。</p>
+  <p>如果瀏覽器能察覺到這些訊號，並在適當的時候提供協助，例如把干擾元素收起來、放大字距、一次只呈現一段內容，或許就能讓閱讀變得更輕鬆。重點是讓使用者自己決定要不要開啟，而不是替使用者貼上標籤。</p>
+  <p>專家建議，除了工具的輔助，也可以養成固定時間休息的習慣，例如每閱讀二十五分鐘就起身走動一分鐘，讓大腦有機會重新整理。適合自己的節奏，比硬撐著讀完更重要。</p>
+  <p>最後，設計者也應該思考：一個網頁是否真的需要那麼多會動的東西？讓介面配合人的大腦，而不是要求人去適應介面，或許才是未來網頁設計該走的方向。</p>
+  <div class="comment-section"><b>留言（518）</b><p>網友A：好有感，我每次都被廣告分心 😂</p><p>網友B：求推薦好用的擴充功能</p><p>網友C：+1</p></div>
+ </article>
+ <aside class="sidebar">
+  <div class="ad-box"><div class="spin"></div>限時搶購 ⏰<br>只剩 3 件！</div>
+  <div class="fake-video">▶ 自動播放：本週最狂開箱影片</div>
+  <h3>🔥 熱門排行</h3>
+  <div class="related-list"><div class="hot">1. 這家夜市小吃排隊三小時 <span class="badge-new">HOT</span></div><div>2. 新手機實測，續航真的有變好嗎？</div><div class="hot">3. 震驚！你絕對不知道的 10 個冷知識</div><div>4. 週末去哪玩？北部景點懶人包</div><div>5. 網友瘋傳的神秘甜點</div><div>6. 本週星座運勢大公開</div></div>
+  <div class="ad-box" style="height:200px">💳 辦卡首刷送好禮</div>
+ </aside>
+</div>
+<div class="promo-strip">🎁 訂閱電子報，立即領取 100 元購物金！ ✕</div>
+<div class="popup-chat">💬 小編在線上！有什麼問題都可以問我喔～</div>
+<div style="height:300px"></div>
+</body></html>

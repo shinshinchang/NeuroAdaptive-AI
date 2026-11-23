@@ -1,0 +1,99 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: ZH,Noto Sans CJK TC,54,&H00FFFFFF,&H00FFFFFF,&H70201A16,&H70201A16,-1,0,0,0,100,100,1,0,3,14,0,2,80,80,118,1
+Style: EN,Noto Sans CJK TC,34,&H00E6E6E6,&H00FFFFFF,&H70201A16,&H70201A16,0,0,0,0,100,100,0,0,3,10,0,2,80,80,50,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.60,0:00:03.66,ZH,,0,0,0,,每個網頁都在搶你的注意力
+Dialogue: 0,0:00:00.60,0:00:03.66,EN,,0,0,0,,Every web page is competing for your attention:
+Dialogue: 0,0:00:03.68,0:00:06.35,ZH,,0,0,0,,彈窗、自動播放、會動的廣告
+Dialogue: 0,0:00:03.68,0:00:06.35,EN,,0,0,0,,pop-ups, autoplay videos, moving ads.
+Dialogue: 0,0:00:06.50,0:00:10.15,ZH,,0,0,0,,對許多人，尤其是神經多樣性的學習者
+Dialogue: 0,0:00:06.50,0:00:10.15,EN,,0,0,0,,For many of us, and especially for neurodivergent learners,
+Dialogue: 0,0:00:10.17,0:00:11.98,ZH,,0,0,0,,這些雜訊讓人疲憊
+Dialogue: 0,0:00:10.17,0:00:11.98,EN,,0,0,0,,that noise is exhausting.
+Dialogue: 0,0:00:12.13,0:00:15.45,ZH,,0,0,0,,網路上分心，不只是意志力的問題
+Dialogue: 0,0:00:12.13,0:00:15.45,EN,,0,0,0,,Losing focus online isn't just a willpower problem.
+Dialogue: 0,0:00:15.47,0:00:17.59,ZH,,0,0,0,,而是設計的問題
+Dialogue: 0,0:00:15.47,0:00:17.59,EN,,0,0,0,,It's a design problem.
+Dialogue: 0,0:00:17.94,0:00:21.84,ZH,,0,0,0,,我們從一個瀏覽器小遊戲 Go/No-Go 開始
+Dialogue: 0,0:00:17.94,0:00:21.84,EN,,0,0,0,,We started with a simple browser game called Go/No-Go.
+Dialogue: 0,0:00:21.89,0:00:25.07,ZH,,0,0,0,,從每一條滑鼠軌跡，算出十個特徵
+Dialogue: 0,0:00:21.89,0:00:25.07,EN,,0,0,0,,From every mouse path, we extracted ten features,
+Dialogue: 0,0:00:25.09,0:00:30.18,ZH,,0,0,0,,像反應時間變異、方向變換、路徑效率
+Dialogue: 0,0:00:25.09,0:00:30.18,EN,,0,0,0,,such as reaction-time variability, direction changes, and path efficiency.
+Dialogue: 0,0:00:30.23,0:00:34.32,ZH,,0,0,0,,合成注意力負荷分數，顯示在儀表板上
+Dialogue: 0,0:00:30.23,0:00:34.32,EN,,0,0,0,,Together, they form an attention-load score on a live dashboard.
+Dialogue: 0,0:00:34.37,0:00:36.61,ZH,,0,0,0,,v0.1 能量測注意力
+Dialogue: 0,0:00:34.37,0:00:36.61,EN,,0,0,0,,v0.1 could measure attention.
+Dialogue: 0,0:00:36.63,0:00:39.06,ZH,,0,0,0,,但只量測，還幫不上忙
+Dialogue: 0,0:00:36.63,0:00:39.06,EN,,0,0,0,,But measuring isn't helping.
+Dialogue: 0,0:00:39.41,0:00:42.42,ZH,,0,0,0,,接著我們問：能不能在任何網頁上運作
+Dialogue: 0,0:00:39.41,0:00:42.42,EN,,0,0,0,,Then we asked: could this work on any web page,
+Dialogue: 0,0:00:42.44,0:00:44.17,ZH,,0,0,0,,而不只在測驗裡？
+Dialogue: 0,0:00:42.44,0:00:44.17,EN,,0,0,0,,not just inside a test?
+Dialogue: 0,0:00:44.22,0:00:46.87,ZH,,0,0,0,,於是我們把它做成 Chrome 擴充功能
+Dialogue: 0,0:00:44.22,0:00:46.87,EN,,0,0,0,,So we rebuilt it as a Chrome extension.
+Dialogue: 0,0:00:46.92,0:00:48.53,ZH,,0,0,0,,保留滑鼠移動特徵
+Dialogue: 0,0:00:46.92,0:00:48.53,EN,,0,0,0,,It keeps the movement features
+Dialogue: 0,0:00:48.55,0:00:51.90,ZH,,0,0,0,,再加上來回捲動等瀏覽訊號
+Dialogue: 0,0:00:48.55,0:00:51.90,EN,,0,0,0,,and adds browsing signals, like back-and-forth scrolling.
+Dialogue: 0,0:00:51.95,0:00:54.66,ZH,,0,0,0,,而且只跟你自己的基準比較
+Dialogue: 0,0:00:51.95,0:00:54.66,EN,,0,0,0,,And it compares you only with your own baseline,
+Dialogue: 0,0:00:54.68,0:00:56.23,ZH,,0,0,0,,從不跟別人比
+Dialogue: 0,0:00:54.68,0:00:56.23,EN,,0,0,0,,never with anyone else.
+Dialogue: 0,0:00:56.48,0:00:59.03,ZH,,0,0,0,,程式模擬測試中，躁動的游標
+Dialogue: 0,0:00:56.48,0:00:59.03,EN,,0,0,0,,In a scripted test, restless cursor movement
+Dialogue: 0,0:00:59.05,0:01:01.90,ZH,,0,0,0,,分數衝過 80、接近滿分
+Dialogue: 0,0:00:59.05,0:01:01.90,EN,,0,0,0,,climbed past eighty, toward the top of the scale.
+Dialogue: 0,0:01:01.92,0:01:04.27,ZH,,0,0,0,,平穩的移動一直低於 20
+Dialogue: 0,0:01:01.92,0:01:04.27,EN,,0,0,0,,Steady movement stayed below twenty.
+Dialogue: 0,0:01:04.32,0:01:06.72,ZH,,0,0,0,,這證明分數會隨動作變化
+Dialogue: 0,0:01:04.32,0:01:06.72,EN,,0,0,0,,That shows the score reacts to movement.
+Dialogue: 0,0:01:06.74,0:01:09.66,ZH,,0,0,0,,還不能說明真人會怎麼反應
+Dialogue: 0,0:01:06.74,0:01:09.66,EN,,0,0,0,,It doesn't yet show how real people respond.
+Dialogue: 0,0:01:10.01,0:01:13.77,ZH,,0,0,0,,分數持續偏高時，擴充功能不會接管
+Dialogue: 0,0:01:10.01,0:01:13.77,EN,,0,0,0,,When your score stays high, the extension doesn't take over.
+Dialogue: 0,0:01:13.79,0:01:16.62,ZH,,0,0,0,,它只會問：安靜一點的頁面會有幫助嗎？
+Dialogue: 0,0:01:13.79,0:01:16.62,EN,,0,0,0,,It simply asks: would a calmer page help?
+Dialogue: 0,0:01:16.77,0:01:19.35,ZH,,0,0,0,,你說好之前，什麼都不會改變
+Dialogue: 0,0:01:16.77,0:01:19.35,EN,,0,0,0,,Nothing changes until you say yes.
+Dialogue: 0,0:01:22.10,0:01:23.95,ZH,,0,0,0,,專注模式先讓廣告淡出
+Dialogue: 0,0:01:22.10,0:01:23.95,EN,,0,0,0,,Focus mode fades out the ads,
+Dialogue: 0,0:01:23.97,0:01:26.09,ZH,,0,0,0,,讓側欄和彈窗滑走
+Dialogue: 0,0:01:23.97,0:01:26.09,EN,,0,0,0,,slides away sidebars and pop-ups,
+Dialogue: 0,0:01:26.11,0:01:28.81,ZH,,0,0,0,,降低彩度、停止動畫
+Dialogue: 0,0:01:26.11,0:01:28.81,EN,,0,0,0,,softens the colors and freezes animations,
+Dialogue: 0,0:01:28.83,0:01:31.92,ZH,,0,0,0,,再把文字放大成單欄
+Dialogue: 0,0:01:28.83,0:01:31.92,EN,,0,0,0,,then enlarges the text into one calm column.
+Dialogue: 0,0:01:31.97,0:01:34.50,ZH,,0,0,0,,閱讀尺或段落聚焦
+Dialogue: 0,0:01:31.97,0:01:34.50,EN,,0,0,0,,A reading ruler, or paragraph focus,
+Dialogue: 0,0:01:34.52,0:01:38.65,ZH,,0,0,0,,讓你一次只看一行、一段
+Dialogue: 0,0:01:34.52,0:01:38.65,EN,,0,0,0,,lets you take it one line, or one paragraph, at a time.
+Dialogue: 0,0:01:38.90,0:01:41.52,ZH,,0,0,0,,不需要鏡頭，也不需要額外硬體
+Dialogue: 0,0:01:38.90,0:01:41.52,EN,,0,0,0,,It needs no camera and no extra hardware,
+Dialogue: 0,0:01:41.54,0:01:43.79,ZH,,0,0,0,,只用你本來就在用的滑鼠
+Dialogue: 0,0:01:41.54,0:01:43.79,EN,,0,0,0,,just the mouse you already use.
+Dialogue: 0,0:01:43.84,0:01:45.92,ZH,,0,0,0,,一鍵就能還原原本的網頁
+Dialogue: 0,0:01:43.84,0:01:45.92,EN,,0,0,0,,One click restores the original page,
+Dialogue: 0,0:01:45.94,0:01:48.53,ZH,,0,0,0,,資料也不會離開你的電腦
+Dialogue: 0,0:01:45.94,0:01:48.53,EN,,0,0,0,,and your data never leaves your computer.
+Dialogue: 0,0:01:48.88,0:01:50.57,ZH,,0,0,0,,下一步，我們會請同學試用
+Dialogue: 0,0:01:48.88,0:01:50.57,EN,,0,0,0,,Next, classmates will try it,
+Dialogue: 0,0:01:50.59,0:01:53.73,ZH,,0,0,0,,用他們的回饋調整權重
+Dialogue: 0,0:01:50.59,0:01:53.73,EN,,0,0,0,,and their feedback will help us tune the weights.
+Dialogue: 0,0:01:53.88,0:01:57.76,ZH,,0,0,0,,NeuroAdaptive 不是醫療或診斷工具
+Dialogue: 0,0:01:53.88,0:01:57.76,EN,,0,0,0,,NeuroAdaptive is not a medical or diagnostic tool.
+Dialogue: 0,0:01:57.91,0:02:00.88,ZH,,0,0,0,,這是讓網頁配合人的一小步
+Dialogue: 0,0:01:57.91,0:02:00.88,EN,,0,0,0,,It's a small step toward a web that adapts to people,
+Dialogue: 0,0:02:00.90,0:02:03.29,ZH,,0,0,0,,而不是讓人去配合網頁
+Dialogue: 0,0:02:00.90,0:02:03.29,EN,,0,0,0,,instead of people adapting to the web.
+Dialogue: 0,0:02:03.54,0:02:05.67,ZH,,0,0,0,,歡迎來攤位試玩
+Dialogue: 0,0:02:03.54,0:02:05.67,EN,,0,0,0,,Come try it at our booth.

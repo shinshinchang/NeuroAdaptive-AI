@@ -1,0 +1,172 @@
+1
+00:00:00,600 --> 00:00:03,655
+Every web page is competing for your attention:
+
+2
+00:00:03,675 --> 00:00:06,346
+pop-ups, autoplay videos, moving ads.
+
+3
+00:00:06,496 --> 00:00:10,151
+For many of us, and especially for neurodivergent learners,
+
+4
+00:00:10,171 --> 00:00:11,978
+that noise is exhausting.
+
+5
+00:00:12,128 --> 00:00:15,452
+Losing focus online isn't just a willpower problem.
+
+6
+00:00:15,472 --> 00:00:17,594
+It's a design problem.
+
+7
+00:00:17,944 --> 00:00:21,842
+We started with a simple browser game called Go/No-Go.
+
+8
+00:00:21,892 --> 00:00:25,075
+From every mouse path, we extracted ten features,
+
+9
+00:00:25,095 --> 00:00:30,182
+such as reaction-time variability, direction changes, and path efficiency.
+
+10
+00:00:30,232 --> 00:00:34,322
+Together, they form an attention-load score on a live dashboard.
+
+11
+00:00:34,372 --> 00:00:36,611
+v0.1 could measure attention.
+
+12
+00:00:36,631 --> 00:00:39,062
+But measuring isn't helping.
+
+13
+00:00:39,412 --> 00:00:42,421
+Then we asked: could this work on any web page,
+
+14
+00:00:42,441 --> 00:00:44,174
+not just inside a test?
+
+15
+00:00:44,224 --> 00:00:46,874
+So we rebuilt it as a Chrome extension.
+
+16
+00:00:46,924 --> 00:00:48,534
+It keeps the movement features
+
+17
+00:00:48,554 --> 00:00:51,902
+and adds browsing signals, like back-and-forth scrolling.
+
+18
+00:00:51,952 --> 00:00:54,658
+And it compares you only with your own baseline,
+
+19
+00:00:54,678 --> 00:00:56,234
+never with anyone else.
+
+20
+00:00:56,484 --> 00:00:59,034
+In a scripted test, restless cursor movement
+
+21
+00:00:59,054 --> 00:01:01,897
+climbed past eighty, toward the top of the scale.
+
+22
+00:01:01,917 --> 00:01:04,270
+Steady movement stayed below twenty.
+
+23
+00:01:04,320 --> 00:01:06,723
+That shows the score reacts to movement.
+
+24
+00:01:06,743 --> 00:01:09,658
+It doesn't yet show how real people respond.
+
+25
+00:01:10,008 --> 00:01:13,766
+When your score stays high, the extension doesn't take over.
+
+26
+00:01:13,786 --> 00:01:16,618
+It simply asks: would a calmer page help?
+
+27
+00:01:16,768 --> 00:01:19,346
+Nothing changes until you say yes.
+
+28
+00:01:22,096 --> 00:01:23,952
+Focus mode fades out the ads,
+
+29
+00:01:23,972 --> 00:01:26,088
+slides away sidebars and pop-ups,
+
+30
+00:01:26,108 --> 00:01:28,805
+softens the colors and freezes animations,
+
+31
+00:01:28,825 --> 00:01:31,922
+then enlarges the text into one calm column.
+
+32
+00:01:31,972 --> 00:01:34,497
+A reading ruler, or paragraph focus,
+
+33
+00:01:34,517 --> 00:01:38,654
+lets you take it one line, or one paragraph, at a time.
+
+34
+00:01:38,904 --> 00:01:41,522
+It needs no camera and no extra hardware,
+
+35
+00:01:41,542 --> 00:01:43,786
+just the mouse you already use.
+
+36
+00:01:43,836 --> 00:01:45,922
+One click restores the original page,
+
+37
+00:01:45,942 --> 00:01:48,526
+and your data never leaves your computer.
+
+38
+00:01:48,876 --> 00:01:50,569
+Next, classmates will try it,
+
+39
+00:01:50,589 --> 00:01:53,734
+and their feedback will help us tune the weights.
+
+40
+00:01:53,884 --> 00:01:57,758
+NeuroAdaptive is not a medical or diagnostic tool.
+
+41
+00:01:57,908 --> 00:02:00,879
+It's a small step toward a web that adapts to people,
+
+42
+00:02:00,899 --> 00:02:03,294
+instead of people adapting to the web.
+
+43
+00:02:03,544 --> 00:02:05,666
+Come try it at our booth.
+
