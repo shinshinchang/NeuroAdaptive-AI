@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "NeuroAdaptive AI – 專注模式 Demo",
+  "version": "0.2.0",
+  "description": "瀏覽器端滑鼠微行為 → 注意力負荷指標 → 自適應專注模式。資料只留在本機，非診斷工具。",
+  "permissions": ["storage", "activeTab"],
+  "action": { "default_popup": "popup.html", "default_icon": {"16":"icons/icon16.png","48":"icons/icon48.png","128":"icons/icon128.png"} },
+  "icons": {"16":"icons/icon16.png","48":"icons/icon48.png","128":"icons/icon128.png"},
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "css": ["focus.css"],
+    "run_at": "document_idle"
+  }]
+}

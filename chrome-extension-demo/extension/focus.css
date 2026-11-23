@@ -1,0 +1,13 @@
+/* NeuroAdaptive Focus Mode – 分層轉換 */
+.na-hide{transition:opacity .9s ease, filter .9s ease !important;opacity:0 !important;filter:blur(4px) !important;pointer-events:none !important}
+.na-slide{transition:transform 1s cubic-bezier(.6,0,.4,1), opacity 1s ease !important;transform:translateX(120%) !important;opacity:0 !important;pointer-events:none !important}
+.na-gone{display:none !important}
+html.na-f3 body{background:#f6f1e7 !important;transition:background .8s}
+html.na-f3 body > *:not(#na-root){filter:saturate(.25) !important;transition:filter 1s ease}
+html.na-f3 *:not(#na-root){animation-play-state:paused !important;animation:none !important;transition-property:opacity,transform,filter,background,font-size,line-height,max-width !important}
+html.na-f3 img[src$=".gif"]{visibility:hidden !important}
+html.na-f4 [data-na-main]{max-width:680px !important;margin:24px auto !important;float:none !important;width:auto !important;font-size:21px !important;line-height:2 !important;letter-spacing:.04em !important;color:#2b2622 !important;background:transparent !important;transition:all .9s ease !important}
+html.na-f4 [data-na-main] p{font-size:21px !important;line-height:2 !important;margin:0 0 1.2em !important;transition:opacity .4s}
+html.na-focus h1{font-size:34px !important;max-width:680px;margin:40px auto 10px !important;color:#2b2622 !important}
+p.na-dim{opacity:.18 !important}
+p.na-cur{opacity:1 !important;background:#fffdf7;border-radius:8px;box-shadow:0 0 0 8px #fffdf7}

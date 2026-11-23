@@ -1,0 +1,18 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><style>
+body{width:300px;margin:0;padding:14px;font-family:"Noto Sans CJK TC","PingFang TC","Microsoft JhengHei",sans-serif;background:#fffdf7;color:#2b2622}
+h1{font-size:16px;margin:0 0 2px}.sub{font-size:11px;color:#888;margin-bottom:10px}
+.score{font-size:34px;font-weight:800}.row{display:flex;justify-content:space-between;align-items:center;margin:8px 0;font-size:13px}
+button{width:100%;margin:4px 0;padding:8px;border:0;border-radius:9px;font-weight:700;cursor:pointer;background:#eee}
+button.pri{background:#2f7d5b;color:#fff}.note{font-size:11px;color:#666;background:#f3ede0;border-radius:8px;padding:8px;margin-top:10px;line-height:1.5}
+</style></head><body>
+<h1>NeuroAdaptive AI</h1><div class="sub">滑鼠微行為 → 注意力負荷 → 專注模式</div>
+<div class="row"><span>目前負荷</span><span class="score" id="score">–</span></div>
+<div class="row"><label>啟用偵測</label><input type="checkbox" id="enabled"></div>
+<div class="row"><label>靈敏度 <span id="sv"></span></label><input type="range" id="sensitivity" min="0.6" max="1.6" step="0.1"></div>
+<div class="row"><label>Demo 模式（門檻降低，攤位用）</label><input type="checkbox" id="demoMode"></div>
+<div class="row"><label>顯示滑鼠軌跡</label><input type="checkbox" id="trail"></div>
+<div class="row"><label>自動提示</label><input type="checkbox" id="autoPrompt"></div>
+<button class="pri" id="focus">開／關 專注模式</button>
+<button id="ruler">閱讀尺</button><button id="chunk">分段呈現</button><button id="break">休息提醒（1 分鐘）</button><button id="reset">重置（換下一位體驗者）</button>
+<div class="note">🔒 隱私：所有滑鼠與捲動資料只在這個分頁的記憶體裡計算，不上傳、不儲存軌跡。本工具是自我覺察的輔助工具，<b>不做醫療診斷</b>。</div>
+<script src="popup.js"></script></body></html>
