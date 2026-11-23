@@ -7,7 +7,8 @@
   if (window.__naLoaded) return; window.__naLoaded = true;
   if (document.querySelector('meta[name="na-exclude"]')) return;
 
-  const WINDOW_MS = 12000;
+  const WINDOW_MS = 12000, CALIB_MS = 25000;
+  const calib = { start: performance.now(), sum: 0, n: 0, base: null }; // 個人基準線
   const S = { enabled: true, sensitivity: 1.0, demoMode: false, trail: false, autoPrompt: true };
   let moves = [], scrolls = [], lastScrollY = window.scrollY, lastScrollDir = 0, segStart = window.scrollY;
   let score = 0, comps = {}, highSince = 0, prompted = false, snoozeUntil = 0;
@@ -96,24 +97,29 @@
     };
     let raw = 100 * (comps.paceVariability * .30 + comps.impulsiveBursts * .28 + comps.scrollBacktrack * .20 + comps.direction * .12 + comps.movementVariability * .10);
     if (f.activeSec < 1.0) raw *= f.activeSec;                   // 幾乎沒動 → 不判斷
+    // 個人基準線：前 25 秒（有在動的時候）的平均原始分數當作「這個人平常的樣子」，之後只看高出基準的部分
+    if (!S.demoMode) {
+      if (calib.base === null) { if (f.activeSec >= 1) { calib.sum += raw; calib.n++; } if (performance.now() - calib.start > CALIB_MS && calib.n >= 10) calib.base = Math.min(calib.sum / calib.n, 50); }
+      else { const b = calib.base * 0.8; raw = clamp((raw - b) * 100 / (100 - b), 0, 100); }
+    }
     raw = clamp(raw * S.sensitivity, 0, 100);
     score = score + (raw - score) * 0.35;                         // 平滑
     render(f);
   }
 
-  const TH = () => S.demoMode ? { high: 50, mod: 28, hold: 1500 } : { high: 65, mod: 35, hold: 3000 };
+  const TH = () => S.demoMode ? { high: 50, mod: 28, hold: 1500, prompt: 50 } : { high: 65, mod: 35, hold: 6000, prompt: 70 };
   function render(f) {
     const s = Math.round(score), th = TH();
     const lvl = s >= th.high ? 'High' : s >= th.mod ? 'Moderate' : 'Low';
     const col = lvl === 'High' ? '#d9532b' : lvl === 'Moderate' ? '#f0a33a' : '#2f7d5b';
-    $('num').textContent = s; $('lvl').textContent = { High: '偏高', Moderate: '中等', Low: '低' }[lvl]; $('lvl').style.color = col;
+    $('num').textContent = s; $('lvl').textContent = { High: '偏高', Moderate: '中等', Low: '低' }[lvl]; $('lvl').style.color = col; if (!S.demoMode && calib.base === null) $('lvl').textContent += '・校準中';
     $('arc').style.stroke = col; $('arc').style.strokeDashoffset = 150.8 * (1 - s / 100);
     const names = { paceVariability: '節奏不穩 ×0.30', impulsiveBursts: '突發甩動 ×0.28', scrollBacktrack: '來回捲動 ×0.20', direction: '方向變換 ×0.12', movementVariability: '速度變異 ×0.10' };
     $('det').innerHTML = Object.entries(comps).map(([k, v]) => `${names[k]}<div class="bar"><i style="width:${Math.round(v * 100)}%"></i></div>`).join('') + '<div style="color:#999">資料只在本機計算・非診斷</div>';
     window.__naState = { score: s, level: lvl, comps, features: f, focusOn };
     document.documentElement.setAttribute('data-na-score', s); document.documentElement.setAttribute('data-na-state', JSON.stringify({ score: s, level: lvl, focusOn, comps: Object.fromEntries(Object.entries(comps).map(([k, v]) => [k, +v.toFixed(2)])) }));
     const now = performance.now();
-    if (lvl === 'High') { if (!highSince) highSince = now; } else highSince = 0;
+    if (s >= th.prompt) { if (!highSince) highSince = now; } else highSince = 0;
     if (S.autoPrompt && !focusOn && !prompted && highSince && now - highSince > th.hold && now > snoozeUntil) { prompted = true; $('prompt').classList.add('show'); }
     if (focusOn) { if (lvl === 'High') { if (!focusHighSince) focusHighSince = now; if (now - focusHighSince > 60000) { focusHighSince = 0; showBreak(); } } else focusHighSince = 0; }
     const bb = $('badge').getBoundingClientRect(); $('prompt').style.top = (bb.bottom + 12) + 'px';
@@ -202,7 +208,7 @@
       case 'ruler': setRuler(v === undefined ? !rulerOn : !!v); break;
       case 'break': showBreak(); break;
       case 'details': $('badge').classList.toggle('open', !!v); break;
-      case 'reset': moves = []; scrolls = []; score = 0; prompted = false; snoozeUntil = 0; hideBreak(); if (focusOn) setFocus(false); break;
+      case 'reset': calib.start = performance.now(); calib.sum = 0; calib.n = 0; calib.base = null; moves = []; scrolls = []; score = 0; prompted = false; snoozeUntil = 0; hideBreak(); if (focusOn) setFocus(false); break;
     }
     return { score: Math.round(score), focusOn, chunkOn, rulerOn };
   }
