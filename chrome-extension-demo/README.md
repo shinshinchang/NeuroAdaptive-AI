@@ -3,6 +3,10 @@
 > 不需要額外硬體，只用瀏覽器裡的滑鼠微行為，即時估算「注意力負荷」，偏高時溫和提醒，並一鍵把網頁變成專注模式。
 > **定位：自我覺察的輔助工具，不做醫療診斷。** 所有資料只在本機分頁記憶體內計算，不上傳、不儲存原始軌跡。
 
+線上示範頁（不需安裝擴充功能，任何瀏覽器可開）：[https://wenzhotw.github.io/NeuroAdaptive-AI/](https://wenzhotw.github.io/NeuroAdaptive-AI/)
+- 已把擴充功能的滑鼠／捲動負荷計算與專注模式（四步轉換、閱讀尺、段落模式、一鍵復原）直接做進網頁；預設 Demo 模式（門檻 50、持續 1.5 秒），也可手動開啟。
+- 原始檔在 [`showcase-site/`](showcase-site/)。自我覺察工具，不是醫療診斷；資料只留在該分頁。
+
 展示影片：
 - **v2（主要版本）**：[`NeuroAdaptive_demo_v2.mp4`](NeuroAdaptive_demo_v2.mp4)（約 2:10，1920×1080，英語旁白＋燒錄繁中／英文雙行字幕＋配樂；另附 [`zh-Hant.srt`](NeuroAdaptive_demo_v2.zh-Hant.srt)、[`en.srt`](NeuroAdaptive_demo_v2.en.srt)）
   - 敘事：為什麼（網頁太吵是設計問題）→ v0.1 起點（Go/No-Go → 10 個特徵 → 分數＋儀表板，含 v0.1 實機畫面）→ 橋接「v0.1 could measure attention. But measuring isn't helping.」→ 在任何網頁感知（動作特徵＋來回捲動、個人基準線；程式模擬輸入的躁動 vs 平穩並排測試）→ 使用者同意後才調整（提示、按下開啟、3 秒停頓、四步轉換、閱讀尺／段落聚焦）→ 控制權與隱私（一鍵還原、資料留本機）→ 下一步與聲明。
@@ -15,6 +19,7 @@
 | 路徑 | 說明 |
 |---|---|
 | `extension/` | Chrome 擴充功能本體（Manifest V3）：`content.js` 偵測＋專注模式、`focus.css`、`popup.html/js` 控制面板 |
+| `showcase-site/` | 獨立示範網頁（內建偵測＋專注模式，不需安裝擴充功能）；公開於 GitHub Pages |
 | `demo-site/index.html` | 離線用的「很吵」示範新聞頁（假廣告、跑馬燈、閃爍、自動播放、浮動視窗），攤位不用網路 |
 | `screenshots/` | 開啟前／提示卡／分層轉換後／閱讀尺／分段／休息提醒 截圖 |
 | `video/` | 影片製作腳本：`record_real.py`（實機錄影）、`paper/anim.html`（剪紙動畫）、`build.sh`（合成） |
